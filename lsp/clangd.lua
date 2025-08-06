@@ -7,5 +7,5 @@ return {
   root_markers = { 'compile_commands.json', 'compile_flags.txt' },
 
   -- Filetypes to automatically attach to.
-  filetypes = { 'c', 'cpp' },
+  filetypes = { 'c', 'cpp', 'h', 'hpp', 'objc', 'objcpp', 'cuda', 'proto' },
 }
