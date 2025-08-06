@@ -16,6 +16,8 @@ vim.cmd.colorscheme("unokai")
 vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
 vim.api.nvim_set_hl(0, "EndOfBuffer", { bg = "none" })
+vim.api.nvim_set_hl(0, "NormalFloat", { bg = "#282C34", fg = "#ABB2BF" }) -- Example: Dark background, light foreground
+vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#88C0D0" }) -- Example: Cyan border
 
 -- Basic settings
 vim.opt.number = true                              -- Line numbers
