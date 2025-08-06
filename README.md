@@ -11,7 +11,7 @@ A minimal, **uncluttered**, and native single file config for neovim 0.11+.
 - Colors: 24 bit
 - Share clipboard
 - Leader key: Space
-- Native floating terminal (<leader>t, <ESC>)
+- Native floating terminal (`<leader>t`, `<ESC>`)
 - Tabs (native)
 - Status line (native)
 
