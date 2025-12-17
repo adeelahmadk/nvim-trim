@@ -1,3 +1,7 @@
+-------------------------------------------------------------------------------------------------- 
+-- Inspired by: Marco Peluso
+-- File reference: https://github.com/mplusp/minimal-nvim-0.11-lsp-setup/blob/main/lsp/lua_ls.lua
+-------------------------------------------------------------------------------------------------- 
 return {
   -- Command and arguments to start the server.
   cmd = { 'lua-language-server' },
