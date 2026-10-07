@@ -98,11 +98,14 @@ vim.g.maplocalleader = " "                         -- Set local leader key (NEW)
 -- Normal mode mappings
 vim.keymap.set("n", "<ESC>", "<CMD>nohlsearch<CR>", { desc = "Clear search highlights" })
 
+-- insert mode mappings
+vim.keymap.set("i", "jk", "<Esc>", { desc = "Leave insert mode" }, { noremap = true, silent = true })
+
 -- toggle between relative and absolute line numbers in current window
 vim.keymap.set("n", "<leader>ln", "<CMD>lua vim.wo.relativenumber = not vim.wo.relativenumber<CR>", { desc = "Toggle rel/abs line numbers" })
 
 -- Save, Quit, etc.
-vim.keymap.set("n", "<C-q>", "<CMD>q<CR>", { desc = "Quit" })
+vim.keymap.set("n", "<C-q>", "<CMD>qa<CR>", { desc = "Quit" })
 vim.keymap.set("n", "<leader>w", "<CMD>w<CR>", { desc = "Save current buffer" })
 vim.keymap.set("n", "<leader>wa", "<CMD>wa<CR>", { desc = "Save all buffers" })
 
@@ -340,7 +343,7 @@ local function CloseFloatingTerminal()
 end
 
 -- Key mappings
-vim.keymap.set("n", "<leader>t", FloatingTerminal,
+vim.keymap.set("n", "<leader>tt", FloatingTerminal,
                 { noremap = true, silent = true, desc = "Toggle floating terminal" })
 vim.keymap.set("t", "<Esc>", function()
   if terminal_state.is_open then
