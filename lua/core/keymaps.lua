@@ -6,7 +6,8 @@
 vim.keymap.set("n", "<ESC>", "<CMD>nohlsearch<CR>", { desc = "Clear search highlights" })
 
 -- toggle between relative and absolute line numbers in current window
-vim.keymap.set("n", "<leader>ln", "<CMD>lua vim.wo.relativenumber = not vim.wo.relativenumber<CR>", { desc = "Toggle rel/abs line numbers" })
+vim.keymap.set("n", "<leader>ln", "<CMD>lua vim.wo.relativenumber = not vim.wo.relativenumber<CR>",
+    { desc = "Toggle rel/abs line numbers" })
 
 -- Save, Quit, etc.
 vim.keymap.set("n", "<C-q>", "<CMD>q<CR>", { desc = "Quit" })
@@ -17,8 +18,8 @@ vim.keymap.set("n", "<leader>wa", "<CMD>wa<CR>", { desc = "Save all buffers" })
 vim.keymap.set("n", "<leader>so", ":so<CR>", { desc = "Source current buffer" })
 
 -- Find and center
-vim.keymap.set("n", "n", "nzzzv", { desc = "Find next and center"})
-vim.keymap.set("n", "N", "Nzzzv", { desc = "Find prev and center"})
+vim.keymap.set("n", "n", "nzzzv", { desc = "Find next and center" })
+vim.keymap.set("n", "N", "Nzzzv", { desc = "Find prev and center" })
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Half page down (centered)" })
 vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Half page up (centered)" })
 
@@ -73,6 +74,7 @@ vim.keymap.set("n", "<leader>e", ":Explore<CR>", { desc = "Open file explorer" }
 vim.keymap.set("n", "<leader>ff", ":find ", { desc = "Find file" })
 
 -- Quick config editing
-vim.keymap.set("n", "<leader>rc", ":e ~/.config/nvim/init.lua<CR>", { desc = "Edit config" })
+vim.keymap.set("n", "<leader>rc", ":e ~/.config/nvim-trim/init.lua<CR>", { desc = "Edit config" })
 
-
+-- LSP actions
+-- vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, { desc = "Rename symbol" })
