@@ -39,7 +39,8 @@ M.themes = {
 
 M.theme_index = 1
 
--- Helper function to apply universal transparency for non-catppuccin themes
+-- 4. Helper Functions
+-- 4.1. Apply universal transparency for non-catppuccin themes
 local function apply_fallback_transparency()
     if vim.g.transparent_enabled then
         vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
@@ -48,7 +49,7 @@ local function apply_fallback_transparency()
     end
 end
 
--- Core Colorscheme Setter Engine
+-- 4.2. Core Colorscheme Setter Engine
 function M.set_colorscheme(theme_obj)
     vim.opt.background = theme_obj.bg
 
@@ -70,7 +71,7 @@ function M.set_colorscheme(theme_obj)
     end
 end
 
--- Cycle Theme Interface supporting both directions
+-- 4.3. Cycle Theme Interface supporting both directions
 -- direction: 1 for forward, -1 for backward
 function M.set_next_colorscheme(direction)
     -- Default to forward cycling if no argument is passed
@@ -86,7 +87,7 @@ function M.set_next_colorscheme(direction)
     vim.notify("Colorscheme: " .. M.themes[M.theme_index].name, vim.log.levels.INFO)
 end
 
--- Toggle Transparency Interface
+-- 4.4. Toggle Transparency Interface
 function M.toggle_transparency()
     vim.g.transparent_enabled = not vim.g.transparent_enabled
     M.set_colorscheme(M.themes[M.theme_index])
@@ -94,7 +95,7 @@ function M.toggle_transparency()
     vim.notify("Transparency: " .. status, vim.log.levels.INFO)
 end
 
--- Initial execution on startup
+-- 5. Initial execution on startup
 M.set_colorscheme(M.themes[M.theme_index])
 
 return M
