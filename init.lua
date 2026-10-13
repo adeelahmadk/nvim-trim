@@ -1,6 +1,6 @@
 -- ================================================================================================
--- Title : nvim-trim
--- Description : Minimal and uncluttered NeoVim Config
+-- Title : nvim-trim [zero plugin]
+-- Description : Minimal and uncluttered NeoVim config with zero plugins
 -- ================================================================================================
 
 require("core.options")
