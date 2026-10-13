@@ -1,12 +1,10 @@
 -- ================================================================================================
--- lsp
--- refer to https://gpanders.com/blog/whats-new-in-neovim-0-11/ for a nice overview
--- of how the lsp setup works in neovim 0.11+.
+-- LSP
+--
+-- Enables the lsp servers using the configuration files in the lsp dir inside
+-- the nvim config base, (e.g. ~/.config/nvim/lsp/lua_ls.lua for lua_ls)
 -- ================================================================================================
 
--- LSP
--- enables the lsp servers using the configuration files in the lsp dir
--- inside the nvim config base, e.g. ~/.config/nvim/lsp/lua_ls.lua for lua_ls
 vim.lsp.enable({ 'clangd', 'lua_ls' })
 vim.diagnostic.config({ virtual_text = true })
 
@@ -52,7 +50,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
         -- ============================================================================================
 
         -- Rename all instances of the symbol under your cursor project-wide
-        map('<leader>rn', vim.lsp.buf.rename, 'Rename Symbol')
+        map('<leader>cr', vim.lsp.buf.rename, 'Rename Symbol')
 
         -- Display code actions available at your current cursor position (e.g., auto-fixes, imports)
         map('<leader>ca', vim.lsp.buf.code_action, 'Code Action')

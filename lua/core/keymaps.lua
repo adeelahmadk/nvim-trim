@@ -9,8 +9,46 @@ vim.keymap.set("n", "<ESC>", "<CMD>nohlsearch<CR>", { desc = "Clear search highl
 vim.keymap.set("n", "<leader>ln", "<CMD>lua vim.wo.relativenumber = not vim.wo.relativenumber<CR>",
     { desc = "Toggle rel/abs line numbers" })
 
+-- cycle color schemes
+local themes = {
+    { name = "catppuccin", bg = "dark" },
+    { name = "morning",    bg = "light" },
+    { name = "unokai",     bg = "dark" },
+}
+
+local theme_index = 1
+
+local function set_next_colorscheme()
+    theme_index = (theme_index % #themes) + 1
+    local current = themes[theme_index]
+
+    -- Dynamically enforce background
+    vim.opt.background = current.bg
+
+    local ok, err = pcall(vim.cmd.colorscheme, current.name)
+    if ok then
+        vim.notify("Colorscheme: " .. current.name, vim.log.levels.INFO)
+    else
+        vim.notify("Failed to load " .. current.name .. ": " .. tostring(err), vim.log.levels.WARN)
+    end
+end
+
+vim.keymap.set("n", "<leader>tc", set_next_colorscheme, { desc = "Cycle colorschemes" })
+
+-- toggle transparency (hard override)
+local transparent = true
+vim.keymap.set("n", "<leader>tt", function()
+    transparent = not transparent
+    if transparent then
+        vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+        vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+    else
+        vim.cmd.colorscheme(vim.g.colors_name)
+    end
+end, { desc = "Toggle background transparency" })
+
 -- Save, Quit, etc.
-vim.keymap.set("n", "<C-q>", "<CMD>q<CR>", { desc = "Quit" })
+vim.keymap.set({ "n", "t" }, "<C-q>", "<CMD>q<CR>", { silent = true, noremap = true, desc = "Quit" })
 vim.keymap.set("n", "<leader>w", "<CMD>w<CR>", { desc = "Save current buffer" })
 vim.keymap.set("n", "<leader>wa", "<CMD>wa<CR>", { desc = "Save all buffers" })
 
@@ -41,13 +79,13 @@ vim.keymap.set("n", "<leader>x", "<CMD>bd<CR>", { desc = "Close buffer" })
 
 -- Buffer navigation
 vim.keymap.set("n", "<leader>bn", "<CMD>bnext<CR>", { desc = "Next buffer" })
-vim.keymap.set("n", "<leader>bp", "<CMD>bprevious<CR>", { desc = "Previous buffer" })
+vim.keymap.set("n", "<leader>bb", "<CMD>bprevious<CR>", { desc = "Previous buffer" })
 
 -- Better window navigation
-vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Move to left window" })
-vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Move to bottom window" })
-vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Move to top window" })
-vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Move to right window" })
+vim.keymap.set("n", "<C-h>", "<C-w>h", { silent = true, desc = "Move to left window" })
+vim.keymap.set("n", "<C-j>", "<C-w>j", { silent = true, desc = "Move to bottom window" })
+vim.keymap.set("n", "<C-k>", "<C-w>k", { silent = true, desc = "Move to top window" })
+vim.keymap.set("n", "<C-l>", "<C-w>l", { silent = true, desc = "Move to right window" })
 
 -- Splitting & Resizing
 vim.keymap.set("n", "<leader>sv", ":vsplit<CR>", { desc = "Split window vertically" })

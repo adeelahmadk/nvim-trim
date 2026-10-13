@@ -1,5 +1,7 @@
 -- ============================================================================
 -- USEFUL FUNCTIONS
+-- From v0.13 follow new API, for refere use:
+-- https://github.com/smnatale/dotfiles/blob/2014b0363a10f03ccd710a058003264840b3f22e/nvim/.config/nvim/lua/config/autocmds.lua
 -- ============================================================================
 
 -- Copy Full File-Path
@@ -16,7 +18,7 @@ local augroup = vim.api.nvim_create_augroup("UserConfig", {})
 vim.api.nvim_create_autocmd("TextYankPost", {
     group = augroup,
     callback = function()
-        vim.highlight.on_yank()
+        vim.highlight.on_yank() -- deprecated, use vim.hl.hl_op from 0.13
     end,
 })
 
