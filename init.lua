@@ -91,6 +91,13 @@ vim.opt.splitright = true                          -- Vertical splits go right
 vim.g.mapleader = " "                              -- Set leader key to space
 vim.g.maplocalleader = " "                         -- Set local leader key (NEW)
 
+-- netrw config
+vim.g.netrw_liststyle = 3 -- tree view
+vim.g.netrw_banner = 0 -- hide the top banner
+vim.g.netrw_winsize = 25 -- fix the left split width
+vim.g.netrw_browse_split = 0 -- open files in the previous window
+vim.g.netrw_altfile = 1 -- keep the alternate file correct
+
 -- =====================
 --   Keymappings
 -- =====================
@@ -136,7 +143,7 @@ vim.keymap.set("n", "<leader>x", "<CMD>bd<CR>", { desc = "Close buffer" })
 
 -- Buffer navigation
 vim.keymap.set("n", "<leader>bn", "<CMD>bnext<CR>", { desc = "Next buffer" })
-vim.keymap.set("n", "<leader>bp", "<CMD>bprevious<CR>", { desc = "Previous buffer" })
+vim.keymap.set("n", "<leader>bb", "<CMD>bprevious<CR>", { desc = "Previous buffer" })
 
 -- Better window navigation
 vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Move to left window" })
@@ -164,12 +171,26 @@ vim.keymap.set("i", "<M-k>", "<Esc><CMD>m .-2<CR>==gi", { desc = "Move line up" 
 vim.keymap.set("v", "<M-j>", ":m '>+1<CR>gv=gv", { desc = "Move line below" })
 vim.keymap.set("v", "<M-k>", ":m '<-2<CR>gv=gv", { desc = "Move line up" })
 
--- Quick file navigation
-vim.keymap.set("n", "<leader>e", ":Explore<CR>", { desc = "Open file explorer" })
-vim.keymap.set("n", "<leader>ff", ":find ", { desc = "Find file" })
-
 -- Quick config editing
 vim.keymap.set("n", "<leader>rc", ":e ~/.config/nvim/init.lua<CR>", { desc = "Edit config" })
+
+-- Quick file navigation
+-- vim.keymap.set("n", "<leader>e", ":Explore<CR>", { desc = "Open file explorer" })
+vim.keymap.set("n", "<leader>e", ":Lexplore<CR>", { silent = true, desc = "Toggle file explorer" })
+vim.keymap.set("n", "<leader>ff", ":find ", { desc = "Find file" })
+
+-- grep
+vim.opt.grepprg = "rg --vimgrep --smart-case --hidden"
+vim.opt.grepformat = "%f:%l:%c:%m"
+
+vim.keymap.set("n", "<leader>g", function()
+	vim.ui.input({ prompt = "Grep: " }, function(pattern)
+		if pattern then
+			vim.cmd("silent grep! " .. vim.fn.fnameescape(pattern))
+			vim.cmd("copen")
+		end
+	end)
+end, { silent = true })
 
 -- ============================================================================
 -- USEFUL FUNCTIONS
@@ -181,6 +202,48 @@ vim.keymap.set("n", "<leader>pa", function()
 	vim.fn.setreg("+", path)
 	print("file:", path)
 end)
+
+-- netrw's built-in `%` opens new files in the netrw window instead of
+-- respecting `netrw_browse_split`. Override it to open in the previous window.
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "netrw",
+	callback = function()
+		vim.keymap.set("n", "%", function()
+			local fname = vim.fn.input("Enter filename: ")
+			if fname == "" then
+				return
+			end
+
+			local dir = vim.b.netrw_curdir or vim.fn.getcwd()
+			local path = dir .. "/" .. fname
+
+			if vim.fn.filereadable(path) == 1 or vim.fn.isdirectory(path) == 1 then
+				vim.notify("Already exists: " .. fname, vim.log.levels.WARN)
+				return
+			end
+
+			if fname:match("/$") then
+				vim.fn.mkdir(path, "p")
+				vim.cmd("edit")
+			else
+				local f = io.open(path, "w")
+				if not f then
+					vim.notify("Failed to create: " .. fname, vim.log.levels.ERROR)
+					return
+				end
+				f:close()
+
+				local escaped = vim.fn.fnameescape(path)
+				if vim.fn.winnr("#") == 0 then
+					vim.cmd("edit " .. escaped)
+				else
+					vim.cmd("wincmd p")
+					vim.cmd("edit " .. escaped)
+				end
+			end
+		end, { buffer = true, silent = true, noremap = true, desc = "Create file in previous window" })
+	end,
+})
 
 -- Basic autocommands
 local augroup = vim.api.nvim_create_augroup("UserConfig", {})
