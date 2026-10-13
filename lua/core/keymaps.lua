@@ -2,50 +2,42 @@
 --   Keymappings
 -- =====================
 
+-- ============================================================================================
+-- Colorscheme & Transparency Controls
+-- ============================================================================================
+
+-- Safely require the colorscheme module
+local has_theme_mgr, theme_mgr = pcall(require, "plugins.colorscheme")
+
+if has_theme_mgr then
+    -- Cycle forward through themes
+    vim.keymap.set("n", "<leader>tj", function()
+        theme_mgr.set_next_colorscheme(1)
+    end, { desc = "Next color scheme" })
+
+    -- Cycle backward through themes
+    vim.keymap.set("n", "<leader>tk", function()
+        theme_mgr.set_next_colorscheme(-1)
+    end, { desc = "Previous color scheme" })
+
+    -- Toggle Transparency Keymap (<leader>tt)
+    vim.keymap.set("n", "<leader>tt", function()
+        theme_mgr.toggle_transparency()
+    end, { desc = "Colorscheme: Toggle background transparency" })
+else
+    vim.notify("Keymaps failed to bind colorscheme controls: module plugins.colorscheme not found", vim.log.levels.WARN)
+end
+
+-- ============================================================================================
+-- Editing & Navigation Controls
+-- ============================================================================================
+
 -- Normal mode mappings
 vim.keymap.set("n", "<ESC>", "<CMD>nohlsearch<CR>", { desc = "Clear search highlights" })
 
 -- toggle between relative and absolute line numbers in current window
 vim.keymap.set("n", "<leader>ln", "<CMD>lua vim.wo.relativenumber = not vim.wo.relativenumber<CR>",
     { desc = "Toggle rel/abs line numbers" })
-
--- cycle color schemes
-local themes = {
-    { name = "catppuccin", bg = "dark" },
-    { name = "morning",    bg = "light" },
-    { name = "unokai",     bg = "dark" },
-}
-
-local theme_index = 1
-
-local function set_next_colorscheme()
-    theme_index = (theme_index % #themes) + 1
-    local current = themes[theme_index]
-
-    -- Dynamically enforce background
-    vim.opt.background = current.bg
-
-    local ok, err = pcall(vim.cmd.colorscheme, current.name)
-    if ok then
-        vim.notify("Colorscheme: " .. current.name, vim.log.levels.INFO)
-    else
-        vim.notify("Failed to load " .. current.name .. ": " .. tostring(err), vim.log.levels.WARN)
-    end
-end
-
-vim.keymap.set("n", "<leader>tc", set_next_colorscheme, { desc = "Cycle colorschemes" })
-
--- toggle transparency (hard override)
-local transparent = true
-vim.keymap.set("n", "<leader>tt", function()
-    transparent = not transparent
-    if transparent then
-        vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-        vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
-    else
-        vim.cmd.colorscheme(vim.g.colors_name)
-    end
-end, { desc = "Toggle background transparency" })
 
 -- Save, Quit, etc.
 vim.keymap.set({ "n", "t" }, "<C-q>", "<CMD>q<CR>", { silent = true, noremap = true, desc = "Quit" })
@@ -73,6 +65,22 @@ vim.keymap.set("v", "p", '"_dp', { desc = "Paste and keep yanked text" })
 vim.keymap.set("v", "<", "<gv", { desc = "Outdent and stay in visual mode" })
 vim.keymap.set("v", ">", ">gv", { desc = "Indent and stay in visual mode" })
 
+-- Move lines of code above or below
+vim.keymap.set("n", "<M-j>", "<CMD>m .+1<CR>==", { desc = "Move line below" })
+vim.keymap.set("n", "<M-k>", "<CMD>m .-2<CR>==", { desc = "Move line up" })
+vim.keymap.set("i", "<M-j>", "<Esc><CMD>m .+1<CR>==gi", { desc = "Move line below" })
+vim.keymap.set("i", "<M-k>", "<Esc><CMD>m .-2<CR>==gi", { desc = "Move line up" })
+vim.keymap.set("v", "<M-j>", ":m '>+1<CR>gv=gv", { desc = "Move line below" })
+vim.keymap.set("v", "<M-k>", ":m '<-2<CR>gv=gv", { desc = "Move line up" })
+
+-- Quick file navigation
+vim.keymap.set("n", "<leader>e", ":Explore<CR>", { desc = "Open file explorer" })
+vim.keymap.set("n", "<leader>ff", ":find ", { desc = "Find file" })
+
+-- ============================================================================================
+-- Buffers & Windows
+-- ============================================================================================
+
 -- Buffer management
 vim.keymap.set("n", "<leader>b", "<CMD>enew<CR>", { desc = "New buffer" })
 vim.keymap.set("n", "<leader>x", "<CMD>bd<CR>", { desc = "Close buffer" })
@@ -99,20 +107,5 @@ vim.keymap.set("n", "<C-Right>", ":vertical resize +2<CR>", { desc = "Increase w
 vim.keymap.set("n", "<leader>se", "<C-w>=", { desc = "Make splits equal size" })
 vim.keymap.set("n", "<leader>xs", "<CMD>close<CR>", { desc = "Close a split" })
 
--- Move lines of code above or below
-vim.keymap.set("n", "<M-j>", "<CMD>m .+1<CR>==", { desc = "Move line below" })
-vim.keymap.set("n", "<M-k>", "<CMD>m .-2<CR>==", { desc = "Move line up" })
-vim.keymap.set("i", "<M-j>", "<Esc><CMD>m .+1<CR>==gi", { desc = "Move line below" })
-vim.keymap.set("i", "<M-k>", "<Esc><CMD>m .-2<CR>==gi", { desc = "Move line up" })
-vim.keymap.set("v", "<M-j>", ":m '>+1<CR>gv=gv", { desc = "Move line below" })
-vim.keymap.set("v", "<M-k>", ":m '<-2<CR>gv=gv", { desc = "Move line up" })
-
--- Quick file navigation
-vim.keymap.set("n", "<leader>e", ":Explore<CR>", { desc = "Open file explorer" })
-vim.keymap.set("n", "<leader>ff", ":find ", { desc = "Find file" })
-
 -- Quick config editing
 vim.keymap.set("n", "<leader>rc", ":e ~/.config/nvim-trim/init.lua<CR>", { desc = "Edit config" })
-
--- LSP actions
--- vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, { desc = "Rename symbol" })
