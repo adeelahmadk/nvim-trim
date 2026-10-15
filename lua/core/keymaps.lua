@@ -96,8 +96,8 @@ vim.keymap.set("n", "<C-k>", "<C-w>k", { silent = true, desc = "Move to top wind
 vim.keymap.set("n", "<C-l>", "<C-w>l", { silent = true, desc = "Move to right window" })
 
 -- Splitting & Resizing
-vim.keymap.set("n", "<leader>sv", ":vsplit<CR>", { desc = "Split window vertically" })
-vim.keymap.set("n", "<leader>sh", ":split<CR>", { desc = "Split window horizontally" })
+vim.keymap.set("n", "<leader>s/", ":vsplit<CR>", { desc = "Split window vertically" })
+vim.keymap.set("n", "<leader>s-", ":split<CR>", { desc = "Split window horizontally" })
 vim.keymap.set("n", "<C-Up>", ":resize +2<CR>", { desc = "Increase window height" })
 vim.keymap.set("n", "<C-Down>", ":resize -2<CR>", { desc = "Decrease window height" })
 vim.keymap.set("n", "<C-Left>", ":vertical resize -2<CR>", { desc = "Decrease window width" })

@@ -1,7 +1,7 @@
 local M = {}
 
 -- 1. Initialize Global Transparency State
-vim.g.transparent_enabled = true -- Set your startup default here
+vim.g.transparent_enabled = false -- Set your startup default here
 
 -- 2. Define Theme Configurations
 local has_catppuccin, catppuccin = pcall(require, "catppuccin")

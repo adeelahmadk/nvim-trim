@@ -5,38 +5,39 @@
 local undodir = vim.fn.expand("~/.cache/vim/undodir")
 
 -- Key mappings
-vim.g.mapleader = " "      -- Set leader key to space
-vim.g.maplocalleader = " " -- Set local leader key (NEW)
+-- vim.g.mapleader = " "      -- Set leader key to space
+-- vim.g.maplocalleader = " " -- Set local leader key (NEW)
+
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true
 
 -- theme and transparency
-vim.cmd.colorscheme("catppuccin")  -- builtins: catppuccin, unokai, etc.
-vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
-vim.api.nvim_set_hl(0, "EndOfBuffer", { bg = "none" })
-vim.api.nvim_set_hl(0, "NormalFloat", { bg = "#282C34", fg = "#ABB2BF" }) -- Dark background, light foreground
-vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#88C0D0" })                 -- Cyan border
+vim.cmd.colorscheme("catppuccin") -- builtins: catppuccin, unokai, etc.
+-- vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+-- vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
+-- vim.api.nvim_set_hl(0, "EndOfBuffer", { bg = "none" })
+-- vim.api.nvim_set_hl(0, "NormalFloat", { bg = "#282C34", fg = "#ABB2BF" }) -- Dark background, light foreground
+-- vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#88C0D0" })                 -- Cyan border
 
 -- Visual settings
-vim.opt.termguicolors = true                      -- Enable 24-bit colors
-vim.opt.cursorline = true                         -- Highlight current line
-vim.opt.signcolumn = "yes"                        -- Always show sign column
-vim.opt.colorcolumn = "100"                       -- Show column at 100 characters
-vim.opt.showmatch = true                          -- Highlight matching brackets
-vim.opt.matchtime = 2                             -- How long to show matching bracket
-vim.opt.cmdheight = 1                             -- Command line height
-vim.opt.completeopt = "menuone,noinsert,noselect" -- Completion options
-vim.opt.showmode = false                          -- Don't show mode in below statusline
-vim.opt.pumheight = 10                            -- Popup menu height
-vim.opt.pumblend = 10                             -- Popup menu transparency
-vim.opt.winblend = 0                              -- Floating window transparency
-vim.opt.winborder = "rounded"                     -- rounded border
-vim.opt.pumborder = "rounded"                     -- Popup menu rounded border
-vim.opt.conceallevel = 0                          -- Don't hide markup
-vim.opt.concealcursor = ""                        -- Don't hide cursor line markup
-vim.opt.lazyredraw = true                         -- Don't redraw during macros
-vim.opt.synmaxcol = 300                           -- Syntax highlighting limit
+vim.opt.termguicolors = true  -- Enable 24-bit colors
+vim.opt.cursorline = true     -- Highlight current line
+vim.opt.signcolumn = "yes"    -- Always show sign column
+vim.opt.colorcolumn = "100"   -- Show column at 100 characters
+vim.opt.showmatch = true      -- Highlight matching brackets
+vim.opt.matchtime = 2         -- How long to show matching bracket
+vim.opt.cmdheight = 1         -- Command line height
+-- vim.opt.completeopt = "menuone,noinsert,noselect" -- Completion options
+vim.opt.showmode = false      -- Don't show mode in below statusline
+vim.opt.pumheight = 10        -- Popup menu height
+vim.opt.pumblend = 10         -- Popup menu transparency
+vim.opt.winblend = 0          -- Floating window transparency
+vim.opt.winborder = "rounded" -- rounded border
+vim.opt.pumborder = "rounded" -- Popup menu rounded border
+vim.opt.conceallevel = 0      -- Don't hide markup
+vim.opt.concealcursor = ""    -- Don't hide cursor line markup
+vim.opt.lazyredraw = true     -- Don't redraw during macros
+vim.opt.synmaxcol = 300       -- Syntax highlighting limit
 
 -- Basic settings
 vim.opt.number = true          -- Line numbers
@@ -56,7 +57,7 @@ vim.opt.autoindent = true  -- Copy indent from current line
 -- Search settings
 vim.opt.ignorecase = true -- Case insensitive search
 vim.opt.smartcase = true  -- Case sensitive if uppercase in search
-vim.opt.hlsearch = false  -- Don't highlight search results
+vim.opt.hlsearch = true   -- Highlight search results?
 vim.opt.incsearch = true  -- Show matches as you type
 
 -- File handling
@@ -66,7 +67,7 @@ vim.opt.swapfile = false                 -- Don't create swap files
 vim.opt.undofile = true                  -- Persistent undo
 vim.opt.undodir = vim.fn.expand(undodir) -- Undo directory
 vim.opt.updatetime = 300                 -- Faster completion
-vim.opt.timeoutlen = 500                 -- Key timeout duration
+vim.opt.timeoutlen = 600                 -- Key timeout duration
 vim.opt.ttimeoutlen = 0                  -- Key code timeout
 vim.opt.autoread = true                  -- Auto reload files changed outside vim
 vim.opt.autowrite = false                -- Don't auto save

@@ -20,9 +20,9 @@ vim.api.nvim_create_autocmd('LspAttach', {
             vim.keymap.set('n', keys, func, { buffer = ev.buf, desc = 'LSP: ' .. desc })
         end
 
-        -- ============================================================================================
+        -- ========================================================================================
         -- Navigation & Inspection Keymaps
-        -- ============================================================================================
+        -- ========================================================================================
 
         -- Jump to the definition of the word under your cursor
         map('gd', vim.lsp.buf.definition, 'Go to Definition')
