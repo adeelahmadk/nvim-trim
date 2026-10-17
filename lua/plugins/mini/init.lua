@@ -22,21 +22,21 @@ require("mini.indentscope").setup({
 require("mini.diff").setup({
     view = {
         style = "sign",
-        signs = { add = "┃", change = "┃", delete = "┃" },
+        signs = { add = "┃", change = "┃", delete = "" },
     },
     mappings = {
         -- Toggle overlay text view
         toggle_overlay = "",
     }
 })
-vim.keymap.set("n", "gV", function()
-    require("mini.diff").toggle_overlay()
-end, { desc = "Toggle mini.diff overlay" })
+vim.api.nvim_set_hl(0, 'MiniDiffSignAdd', { fg = '#A3BE8C', bg = 'NONE' })    -- Soft green
+vim.api.nvim_set_hl(0, 'MiniDiffSignChange', { fg = '#EBCB8B', bg = 'NONE' }) -- Soft yellow
+vim.api.nvim_set_hl(0, 'MiniDiffSignDelete', { fg = '#BF616A', bg = 'NONE' }) -- Soft red
 
 -- toggle formatting of brackets
 require("mini.splitjoin").setup({
     mappings = {
-        toggle = "gS",
+        toggle = "<leader>m",
         split = '',
         join = '',
     },

@@ -4,20 +4,11 @@
 
 local undodir = vim.fn.expand("~/.cache/vim/undodir")
 
--- Key mappings
--- vim.g.mapleader = " "      -- Set leader key to space
--- vim.g.maplocalleader = " " -- Set local leader key (NEW)
-
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true
 
 -- theme and transparency
-vim.cmd.colorscheme("catppuccin") -- builtins: catppuccin, unokai, etc.
--- vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
--- vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
--- vim.api.nvim_set_hl(0, "EndOfBuffer", { bg = "none" })
--- vim.api.nvim_set_hl(0, "NormalFloat", { bg = "#282C34", fg = "#ABB2BF" }) -- Dark background, light foreground
--- vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#88C0D0" })                 -- Cyan border
+-- vim.cmd.colorscheme("catppuccin") -- builtins: catppuccin, unokai, etc.
 
 -- Visual settings
 vim.opt.termguicolors = true  -- Enable 24-bit colors
@@ -27,7 +18,6 @@ vim.opt.colorcolumn = "100"   -- Show column at 100 characters
 vim.opt.showmatch = true      -- Highlight matching brackets
 vim.opt.matchtime = 2         -- How long to show matching bracket
 vim.opt.cmdheight = 1         -- Command line height
--- vim.opt.completeopt = "menuone,noinsert,noselect" -- Completion options
 vim.opt.showmode = false      -- Don't show mode in below statusline
 vim.opt.pumheight = 10        -- Popup menu height
 vim.opt.pumblend = 10         -- Popup menu transparency
