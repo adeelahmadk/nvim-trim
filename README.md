@@ -18,7 +18,7 @@ A minimal, **uncluttered**, and native config for neovim 0.11+.
     - C, C++ with `clangd`
 - Vim pack managed plugins:
     - treesitter
-    - mini.nvim
+    - mini.nvim, and more
 
 ## Directory Structure
 
@@ -49,6 +49,24 @@ In addition to `$XDG_CONFIG_HOME/nvim/lua`, Neovim 0.11+ will also scan files on
 ├── init.lua
 └── README.md
 ```
+
+### Plugins
+
+- `treesitter`
+- `mini.nvim`
+
+| Module           | Features                                                                                                                          |
+| ---------        | ---------                                                                                                                         |
+| mini.pick        | fuzzy finder and selection picker                                                                                                 |
+| mini.ai          | Extends text objects (like `a`, `i`), lets target code blocks, function arguments, tags, and quotes.                              |
+| mini.align       | Interactively align text.                                                                                                         |
+| mini.indentscope | Visually highlight the current code indentation block and interact with it.                                                       |
+| mini.diff        | Visualizes differences between your current buffer text and a reference text (git), interactively.                                |
+| mini.splitjoin   | Split and join arguments, lists, and regions inside brackets.                                                                     |
+| mini.pairs       | Auto-pairing characters e.g. `(`, `{`, `[`, `"` or `'`                                                                            |
+| mini.icons       | Highly configurable icon provider plugin.                                                                                         |
+| mini.surround    | Quickly add, delete, replace, find, and highlight surrounding characters (e.g. `(`, `{`, `[`,`"`, `'`, function calls, and tags). |
+| mini.hipatterns  | Pattern highlighter e.g. color hex code, project flags e.g. `TODO:`, `FIXME:`.                                                    |
 
 ### Dependencies
 
