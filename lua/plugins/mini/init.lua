@@ -29,6 +29,9 @@ require("mini.diff").setup({
         toggle_overlay = "",
     }
 })
+vim.keymap.set("n", "<leader>gv", function()
+    require("mini.diff").toggle_overlay(0)
+end, { silent = true, desc = "Toggle git diff overlay" })
 vim.api.nvim_set_hl(0, 'MiniDiffSignAdd', { fg = '#A3BE8C', bg = 'NONE' })    -- Soft green
 vim.api.nvim_set_hl(0, 'MiniDiffSignChange', { fg = '#EBCB8B', bg = 'NONE' }) -- Soft yellow
 vim.api.nvim_set_hl(0, 'MiniDiffSignDelete', { fg = '#BF616A', bg = 'NONE' }) -- Soft red
@@ -68,3 +71,10 @@ hipatterns.setup({
         --hex_color = hipatterns.gen_highlighter.hex_color(),
     },
 })
+
+require("mini.git").setup()
+
+-- modules with detailed config
+require("plugins.mini.notify")
+require("plugins.mini.statusline")
+require("plugins.mini.completions")
