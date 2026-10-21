@@ -1,6 +1,6 @@
 # nvim-trim
 
-A minimal, **uncluttered**, and native config for neovim 0.11+.
+This is a modern, minimal, **uncluttered**, and native config for turning Neovim 0.12+ in an IDE. The configuration uses minimum possible number of plugins complementing the powerful native features introduced in the modern releases of Neovim.
 
 ## Features
 
@@ -18,7 +18,8 @@ A minimal, **uncluttered**, and native config for neovim 0.11+.
     - C, C++ with `clangd`
 - Vim pack managed plugins:
     - treesitter
-    - mini.nvim, and more
+    - mini.nvim
+    - oil.nvim, and more
 
 ## Directory Structure
 
@@ -52,10 +53,11 @@ In addition to `$XDG_CONFIG_HOME/nvim/lua`, Neovim 0.11+ will also scan files on
 
 ### Plugins
 
-- `treesitter`
+- `treesittr`
+- `oil.nvim`
 - `mini.nvim`
 
-| Module           | Features                                                                                                                          |
+| Modul            | Features                                                                                                                          |
 | ---------        | ---------                                                                                                                         |
 | mini.pick        | fuzzy finder and selection picker                                                                                                 |
 | mini.ai          | Extends text objects (like `a`, `i`), lets target code blocks, function arguments, tags, and quotes.                              |
@@ -79,6 +81,10 @@ sudo pacman -S lua-language-server clang
 # debian
 sudo apt install lua-language-server clangd clang-format clang-tidy
 ```
+
+If you want support more language servers then you'll have to:
+- install language servers manually
+- place your settings for each server under `lsp/` directory
 
 The syntax highlighting depends on treesitter parser generator:
 ```shell
