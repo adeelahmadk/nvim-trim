@@ -1,6 +1,6 @@
 # nvim-trim
 
-A minimal, **uncluttered**, and native config for neovim 0.11+.
+This is a modern, minimal, **uncluttered**, and native config for Neovim 0.12+. The configuration uses only uses the powerful native features (no plugins) introduced in the modern releases of Neovim.
 
 ## Features
 
@@ -57,4 +57,4 @@ sudo apt install lua-language-server clangd
 - [How To Set Up LSP Natively in Neovim 0.11+](https://youtu.be/tdhxpn1XdjQ) by Marco Peluso, YouTube
 - [minimal-nvim-0.11-lsp-setup](https://github.com/mplusp/minimal-nvim-0.11-lsp-setup) by Marco Peluso
 - [nvim-lite](https://github.com/radleylewis/nvim-lite/blob/master/init.lua) by Radley E. Sidwell-lewis
-
+- [You don't plugins in Neovim](https://youtu.be/otRvw9neQkg) by Sam Natale
