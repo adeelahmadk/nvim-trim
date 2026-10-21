@@ -43,7 +43,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
         map('K', vim.lsp.buf.hover, 'Hover Documentation')
 
         -- Show signature help (e.g., arguments expected by a function) while typing
-        map('<C-k>', vim.lsp.buf.signature_help, 'Signature Help')
+        map('<leader>ck', vim.lsp.buf.signature_help, 'Signature Help')
 
         -- ============================================================================================
         -- Refactoring & Actions

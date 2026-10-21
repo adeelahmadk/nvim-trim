@@ -48,11 +48,11 @@ MiniPick.setup({
         style = "minimal",
     },
     mappings = {
-        move_down = "<C-j>",
-        move_up = "<C-k>",
+        move_down = "UP",
+        move_up = "DOWN",
         toggle_preview = "<C-p>",
         mark = "<Tab>",
-        choose_marked = "<C-q>",
+        choose_marked = "<C-S-q>",
     },
 })
 

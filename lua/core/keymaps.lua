@@ -74,7 +74,7 @@ vim.keymap.set("v", "<M-j>", ":m '>+1<CR>gv=gv", { desc = "Move line below" })
 vim.keymap.set("v", "<M-k>", ":m '<-2<CR>gv=gv", { desc = "Move line up" })
 
 -- Quick file navigation
-vim.keymap.set("n", "<leader>e", ":Explore<CR>", { desc = "Open file explorer" })
+-- vim.keymap.set("n", "<leader>E", ":Explore<CR>", { desc = "Open file explorer" }) -- netrw replaced by oil.nvim
 vim.keymap.set("n", "<leader>ff", ":find ", { desc = "Find file" })
 
 -- ============================================================================================
