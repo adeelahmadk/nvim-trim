@@ -2,7 +2,11 @@
 
 This is a modern, minimal, **uncluttered**, and native config for turning Neovim 0.12+ in an IDE. The configuration uses minimum possible number of plugins complementing the powerful native features introduced in the modern releases of Neovim.
 
-## Features
+This repository has two more branches of minimal config:
+- [single_file](https://github.com/adeelahmadk/nvim-trim/tree/single_file): Single file config, status line, floating terminal
+- [zero_plugin](https://github.com/adeelahmadk/nvim-trim/tree/zero_plugin): status line, floating terminal, native LSP keymaps
+
+## Main Branch Features
 
 - Cycle Color Schemes: Catppuccin Mocha (default), Catppuccin latte, morning, unokai
 - File type specific Tab sizes
