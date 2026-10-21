@@ -9,7 +9,7 @@ A minimal, **uncluttered**, and native *single file config* for neovim 0.11+.
     - [lua, Python, C, C++] : 4,
     - Others: 2
 - Colors: 24 bit
-- Share clipboard
+- Shared clipboard
 - Leader key: Space
 - Native floating terminal (`<leader>tt`, `<ESC>`)
 - Tabs (native)
@@ -18,4 +18,5 @@ A minimal, **uncluttered**, and native *single file config* for neovim 0.11+.
 ## Inspired by
 
 - [nvim-lite](https://github.com/radleylewis/nvim-lite/blob/master/init.lua) by Radley E. Sidwell-lewis
+- [You don't plugins in Neovim](https://youtu.be/otRvw9neQkg) by Sam Natale
 
