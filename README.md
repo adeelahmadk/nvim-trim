@@ -2,6 +2,10 @@
 
 This is a modern, minimal, **uncluttered**, and native config for Neovim 0.12+. The configuration uses only uses the powerful native features (no plugins) introduced in the modern releases of Neovim.
 
+This repository has two more branches of minimal config:
+- [single_file](https://github.com/adeelahmadk/nvim-trim/tree/single_file): Single file config, status line, floating terminal
+- [main](https://github.com/adeelahmadk/nvim-trim): Multi-file config, minimum plugins
+
 ## Features
 
 - Color Scheme: unokai
