@@ -45,7 +45,7 @@ In addition to `$XDG_CONFIG_HOME/nvim/lua`, Neovim 0.11+ will also scan files on
 
 ### Dependencies
 
-The LSP setup depends on language server packages that can be installed using a package manager, for example:
+Noevim's native LSP setup depends on language server packages that can be installed using a package manager, for example:
 
 ```shell
 # arch linux
@@ -55,10 +55,14 @@ sudo pacman -S lua-language-server clang
 sudo apt install lua-language-server clangd
 ```
 
+If you want support more language servers then you'll have to:
+- install language servers manually
+- place your settings for each server named as `<server-name>.lua` under `lsp/` directory e.g. `clangd.lua`.
+
 ## Inspired by
 
 - Blog post _[What's New in Neovim 0.11](https://gpanders.com/blog/whats-new-in-neovim-0-11/)_ by Gregory Anders
 - [How To Set Up LSP Natively in Neovim 0.11+](https://youtu.be/tdhxpn1XdjQ) by Marco Peluso, YouTube
 - [minimal-nvim-0.11-lsp-setup](https://github.com/mplusp/minimal-nvim-0.11-lsp-setup) by Marco Peluso
 - [nvim-lite](https://github.com/radleylewis/nvim-lite/blob/master/init.lua) by Radley E. Sidwell-lewis
-- [You don't plugins in Neovim](https://youtu.be/otRvw9neQkg) by Sam Natale
+- [You don't need plugins in Neovim](https://youtu.be/otRvw9neQkg) by Sam Natale
